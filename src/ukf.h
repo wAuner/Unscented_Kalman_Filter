@@ -11,6 +11,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 class UKF {
+
 public:
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
@@ -102,6 +103,34 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+private:
+  // prediction
+  void InitState(MeasurementPackage&);
+  void AugmentState();
+  void GenerateSigmaPoints();
+  void PredictSigmaPoints(double delta_t);
+  void PredictMeanCovariance();
+  MatrixXd Xsig_aug_;
+  VectorXd x_aug_;
+  MatrixXd P_aug_;
+
+  // measurement update
+  // radar
+  void SimgaPointsToRadarSpace(MatrixXd&);
+  void RadarSpaceCovariance(MatrixXd&, MatrixXd&, VectorXd&);
+  int n_z_radar_ = 3;
+
+  // laser
+  void LidarSpaceCovariance(MatrixXd&, MatrixXd&, VectorXd&);
+  int n_z_laser_ = 2;
+
+  // both
+  void StateToMeasurementSpace(VectorXd &, MatrixXd &);
+  void CalculateCcMatrix(MatrixXd& Tc, MatrixXd& Zsig, VectorXd& z_pred);
+  void UpdateState(VectorXd& z, MatrixXd& Tc, MatrixXd& S,
+                   VectorXd& z_pred, int n_z, bool);
+
 };
 
 #endif /* UKF_H */
