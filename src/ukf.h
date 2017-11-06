@@ -68,6 +68,9 @@ public:
   ///* Sigma point spreading parameter
   double lambda_;
 
+  double NIS_radar_;
+  double NIS_lidar_;
+
 
   /**
    * Constructor
@@ -105,6 +108,8 @@ public:
   void UpdateRadar(MeasurementPackage meas_package);
 
 private:
+  double NormalizeAngle(double);
+
   // prediction
   void InitState(MeasurementPackage&);
   void AugmentState();
@@ -120,16 +125,19 @@ private:
   void SimgaPointsToRadarSpace(MatrixXd&);
   void RadarSpaceCovariance(MatrixXd&, MatrixXd&, VectorXd&);
   int n_z_radar_ = 3;
+  MatrixXd R_Radar_;
 
   // laser
   void LidarSpaceCovariance(MatrixXd&, MatrixXd&, VectorXd&);
   int n_z_laser_ = 2;
+  MatrixXd R_Lidar_;
 
   // both
   void StateToMeasurementSpace(VectorXd &, MatrixXd &);
-  void CalculateCcMatrix(MatrixXd& Tc, MatrixXd& Zsig, VectorXd& z_pred);
+  void CalculateCcMatrix(MatrixXd& Tc, MatrixXd& Zsig, VectorXd& z_pred, bool isRadar);
   void UpdateState(VectorXd& z, MatrixXd& Tc, MatrixXd& S,
                    VectorXd& z_pred, int n_z, bool);
+
 
 };
 
