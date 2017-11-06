@@ -131,7 +131,7 @@ private:
   int n_z_laser_ = 2;
   MatrixXd R_Lidar_;
 
-  // both
+  // both (only if augmentation method is also used for lidar)
   void StateToMeasurementSpace(VectorXd &, MatrixXd &);
   void CalculateCcMatrix(MatrixXd& Tc, MatrixXd& Zsig, VectorXd& z_pred, bool isRadar);
   void UpdateState(VectorXd& z, MatrixXd& Tc, MatrixXd& S,
