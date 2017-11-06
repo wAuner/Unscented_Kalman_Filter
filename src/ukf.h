@@ -86,7 +86,7 @@ public:
    * ProcessMeasurement
    * @param meas_package The latest measurement data of either radar or laser
    */
-  void ProcessMeasurement(MeasurementPackage meas_package);
+  void ProcessMeasurement(const MeasurementPackage&  meas_package);
 
   /**
    * Prediction Predicts sigma points, the state, and the state covariance
@@ -99,19 +99,19 @@ public:
    * Updates the state and the state covariance matrix using a laser measurement
    * @param meas_package The measurement at k+1
    */
-  void UpdateLidar(MeasurementPackage meas_package);
+  void UpdateLidar(const MeasurementPackage& meas_package);
 
   /**
    * Updates the state and the state covariance matrix using a radar measurement
    * @param meas_package The measurement at k+1
    */
-  void UpdateRadar(MeasurementPackage meas_package);
+  void UpdateRadar(const MeasurementPackage& meas_package);
 
 private:
   double NormalizeAngle(double);
 
   // prediction
-  void InitState(MeasurementPackage&);
+  void InitState(const MeasurementPackage& meas_package);
   void AugmentState();
   void GenerateSigmaPoints();
   void PredictSigmaPoints(double delta_t);
@@ -128,7 +128,6 @@ private:
   MatrixXd R_Radar_;
 
   // laser
-  void LidarSpaceCovariance(MatrixXd&, MatrixXd&, VectorXd&);
   int n_z_laser_ = 2;
   MatrixXd R_Lidar_;
 
