@@ -1,7 +1,13 @@
-# Unscented Kalman Filter Project Starter Code
+# Unscented Kalman Filter for Sensor Fusion Project 
 Self-Driving Car Engineer Nanodegree Program
 
-In this project utilize an Unscented Kalman Filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower that the tolerance outlined in the project rubric. 
+This is my C++ implementation of the Unscented KF project for sensor fusion. The filter fuses radar and lidar sensor data for object tracking within a simulator.
+
+Makes object tracking really smooth...
+
+![](https://media.giphy.com/media/56IdIOn2bkEQU/giphy.gif)
+
+Project instructions below.
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
