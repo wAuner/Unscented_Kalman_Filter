@@ -1,4 +1,7 @@
 # Unscented Kalman Filter for Sensor Fusion Project 
+
+![](unscented_KF.gif)
+
 Self-Driving Car Engineer Nanodegree Program
 
 This is my C++ implementation of the Unscented KF project for sensor fusion. The filter fuses radar and lidar sensor data for object tracking within a simulator.
